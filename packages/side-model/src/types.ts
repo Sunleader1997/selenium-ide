@@ -50,6 +50,23 @@ export interface TestShape {
   name: string
   commands: CommandShape[]
 }
+// 测试组,给测试TestShape进行功能分类
+export interface TestGroup {
+  id: string
+  name: string
+  child: TestGroup[]
+  tests: TestShape[]
+}
+// ssh 设备
+export interface Terminal {
+  id: string
+  name: string
+  ip: string
+  port: number
+  user: string
+  pwd: string
+  system: string
+}
 
 export interface ProjectShape {
   id: string
@@ -62,4 +79,6 @@ export interface ProjectShape {
   tests: TestShape[]
   suites: SuiteShape[]
   snapshot: SnapshotShape
+  testGroup: TestGroup[]
+  terminals: Terminal[]
 }

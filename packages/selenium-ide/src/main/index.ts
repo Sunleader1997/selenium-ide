@@ -34,10 +34,12 @@ app.on('open-file', async (_e, path) => {
 })
 
 // Start and stop hooks
+// [lifecycle:1001] registry windows event
 app.on('ready', async () => {
   if (!app.isPackaged && !isAutomated) {
     installReactDevtools()
   }
+  // [lifecycle:1002] startup systemc
   await session.system.startup()
 
   process.on('SIGINT', async () => {

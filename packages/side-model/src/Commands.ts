@@ -633,4 +633,10 @@ export default {
     target: ArgTypes.conditionalExpression,
     value: ArgTypes.loopLimit,
   },
+  shell: {
+    name: 'shell run in terminal',
+    description: `于设备上执行shell脚本`,
+    target: ArgTypes.terminal,
+    value: ArgTypes.shellScript,
+  },
 } as CommandTypes

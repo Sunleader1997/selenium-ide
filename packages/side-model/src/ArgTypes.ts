@@ -164,6 +164,14 @@ const argTypes = {
     name: 'xpath',
     description: 'The xpath expression to evaluate',
   },
+  terminal: {
+    name: 'terminal',
+    description: 'terminal which shell script running at',
+  },
+  shellScript: {
+    name: 'shell script',
+    description: 'shell script that running in terminal',
+  },
 } as const
 
 export type ArgTypes = typeof argTypes

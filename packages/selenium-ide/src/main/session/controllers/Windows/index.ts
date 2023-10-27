@@ -27,6 +27,7 @@ const playbackWindowOptions = {
 }
 
 const projectEditorWindowName = 'project-editor'
+const myProject = 'my-project'
 
 export type WindowLoader = (
   opts?: BrowserWindowConstructorOptions
@@ -41,7 +42,7 @@ export type WindowLoaderFactory = (session: Session) => WindowLoader
 export interface WindowLoaderFactoryMap {
   [key: string]: WindowLoaderFactory
 }
-
+// [lifecycle:1000] load windows
 const windowLoaderFactoryMap: WindowLoaderFactoryMap = Object.fromEntries(
   Object.entries(windowConfigs).map(
     ([key, { window }]: [string, WindowConfig]) => {
@@ -251,11 +252,12 @@ export default class WindowsController extends BaseController {
     }
   }
 
-  async onProjectLoaded() {
+  async onProjectLoaded() { // [lifecycle 2005] for example, function onProjectLoaded in windows
     await this.initializePlaybackWindow()
     await this.close('splash')
 
-    await this.open(projectEditorWindowName)
+    await this.open(projectEditorWindowName) //  [lifecycle 2006] projectEditorWindowName is project-editor
+    await this.open(myProject)
     const projectWindow = await this.get(projectEditorWindowName)
     const size = storage.get<'windowSize'>('windowSize')
     const position = storage.get<'windowPosition'>('windowPosition')

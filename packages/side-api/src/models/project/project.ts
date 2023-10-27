@@ -18,4 +18,6 @@ export const project: ProjectShape = {
   suites: [],
   tests: [test],
   snapshot: snapshot,
+  testGroup: [],
+  terminals: []
 }

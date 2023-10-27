@@ -12,17 +12,18 @@ export default class SystemController extends BaseController {
   }
   async startup() {
     if (this.isDown) {
+      // [lifecycle:1003] open logger
       await this.session.windows.open('logger')
       // If automated, assume we already have a chromedriver process running
       if (!isAutomated) {
-        const startupError = await this.session.driver.startProcess()
+        const startupError = await this.session.driver.startProcess() // [lifecycle:1004] start driver
         if (startupError) {
           await this.crash(
             `Unable to startup due to chromedriver error: ${startupError}`
           )
         }
       }
-      await this.session.projects.select(firstTime)
+      await this.session.projects.select(firstTime) // [lifecycle:1005] start from path
       this.isDown = false
       firstTime = false
     }

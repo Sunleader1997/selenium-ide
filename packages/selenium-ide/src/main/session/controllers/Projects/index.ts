@@ -27,12 +27,12 @@ export default class ProjectsController {
       BaseController,
       'onProjectLoaded' | 'onProjectUnloaded'
     >
-  ): Promise<void> {
+  ): Promise<void> { // [lifecycle 2003] find all controller from session
     const controllers = Object.values(this.session)
       .filter((v) => v.isController)
       .sort((a: BaseController, b: BaseController) => a.priority - b.priority)
     for (let i = 0, ii = controllers.length; i !== ii; i++) {
-      await controllers[i][hookName]()
+      await controllers[i][hookName]() // [lifecycle 2004] execute every controller's onProjectLoaded
     }
   }
 
@@ -43,7 +43,7 @@ export default class ProjectsController {
     if (this.loaded) return
     this.filepath = filepath
     this.project = project
-    await this.executeHook('onProjectLoaded')
+    await this.executeHook('onProjectLoaded') // [lifecycle 2002] executeHook ,
     this.loaded = true
   }
 
@@ -66,7 +66,7 @@ export default class ProjectsController {
     return this.recentProjects.get()
   }
 
-  async new(): Promise<ProjectShape | null> {
+  async new(): Promise<ProjectShape | null> { // [lifecycle 2000] click create project api
     if (this.loaded) {
       const confirm = await this.onProjectUnloaded()
       if (!confirm) {
@@ -112,8 +112,40 @@ export default class ProjectsController {
           extraGlobals: [],
         },
       },
+      testGroup: [
+        {
+          id: randomUUID(),
+          name: 'root',
+          child: [],
+          tests: [
+            {
+              id: randomUUID(),
+              name: 'New Test',
+              commands: [
+                {
+                  id: randomUUID(),
+                  command: 'open',
+                  target: '/',
+                  value: '',
+                },
+              ],
+            },
+          ]
+        }
+      ],
+      terminals: [
+        {
+          id: randomUUID(),
+          name: 'demo',
+          ip: "127.0.0.1",
+          port: 22,
+          user: 'root',
+          pwd: '123456',
+          system: 'centos'
+        }
+      ]
     }
-    await this.onProjectLoaded(starterProject)
+    await this.onProjectLoaded(starterProject) // [lifecycle 2001] execute onProjectLoaded
     return starterProject
   }
 
@@ -158,7 +190,8 @@ export default class ProjectsController {
         console.warn(`Unable to load file from args: ${argsFilepath}`)
       }
     } else {
-      await this.session.windows.open('splash')
+      await this.session.windows.open('splash') // [lifecycle:1006] open splash
+      await this.session.windows.open('home') // [lifecycle:1007] open home
     }
   }
 

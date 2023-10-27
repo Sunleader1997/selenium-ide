@@ -80,6 +80,8 @@ export function migrateProject(files: FileObj[]) {
     url: '',
     urls: [],
     version: '3.0',
+    testGroup: [],
+    terminals: []
   }
   const suites: string[] = []
   const tests: string[] = []

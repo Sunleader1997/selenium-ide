@@ -166,11 +166,11 @@ const argTypes = {
   },
   terminal: {
     name: 'terminal',
-    description: 'terminal which shell script running at',
+    description: 'terminals which shell script running at',
   },
   shellScript: {
     name: 'shell script',
-    description: 'shell script that running in terminal',
+    description: 'shell script that running in terminals',
   },
 } as const
 

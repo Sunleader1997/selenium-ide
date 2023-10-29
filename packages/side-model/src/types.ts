@@ -59,7 +59,7 @@ export interface TestGroup {
 }
 // ssh 设备
 export interface Terminal {
-  id: string
+  id?: string
   name: string
   ip: string
   port: number

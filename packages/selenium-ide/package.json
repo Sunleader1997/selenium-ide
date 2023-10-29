@@ -97,6 +97,7 @@
     "@emotion/styled": "^11.11.0",
     "@fontsource/roboto": "^5.0.5",
     "@mui/icons-material": "^5.14.1",
+    "@mui/lab": "5.0.0-alpha.150",
     "@mui/material": "^5.14.1",
     "@seleniumhq/code-export-csharp-nunit": "^4.0.0-alpha.1",
     "@seleniumhq/code-export-csharp-xunit": "^4.0.0-alpha.1",
@@ -104,7 +105,6 @@
     "@seleniumhq/code-export-javascript-mocha": "^4.0.0-alpha.2",
     "@seleniumhq/code-export-python-pytest": "^4.0.0-alpha.2",
     "@seleniumhq/code-export-ruby-rspec": "^4.0.0-alpha.1",
-    "side-code-export": "^4.0.0-alpha.11",
     "@seleniumhq/get-driver": "^4.0.0-alpha.1",
     "@seleniumhq/side-api": "^4.0.0-alpha.32",
     "@seleniumhq/side-model": "^4.0.0-alpha.4",
@@ -120,6 +120,8 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
+    "react-morph": "^0.4.0",
+    "side-code-export": "^4.0.0-alpha.11",
     "v8-compile-cache": "^2.3.0"
   },
   "devDependencies": {

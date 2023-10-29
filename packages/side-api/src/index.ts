@@ -11,6 +11,7 @@ import { commands as suites } from './commands/suites'
 import { commands as system } from './commands/system'
 import { commands as tests } from './commands/tests'
 import { commands as windows } from './commands/windows'
+import { commands as terminals } from './commands/terminals'
 
 export interface ApiHoist extends BaseApi {
   dialogs: typeof dialogs
@@ -25,6 +26,7 @@ export interface ApiHoist extends BaseApi {
   system: typeof system
   tests: typeof tests
   windows: typeof windows
+  terminals: typeof terminals
 }
 
 export const api: ApiHoist = {
@@ -40,6 +42,7 @@ export const api: ApiHoist = {
   system,
   tests,
   windows,
+  terminals,
 }
 
 export * from './helpers'

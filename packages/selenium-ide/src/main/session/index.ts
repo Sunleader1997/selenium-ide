@@ -13,6 +13,7 @@ import SuitesController from './controllers/Suites'
 import SystemController from './controllers/System'
 import TestsController from './controllers/Tests'
 import WindowsController from './controllers/Windows'
+import TerminalsController from './controllers/Terminals'
 import Api from '../api'
 import { Session, Storage } from '../types'
 import OutputFormatsController from './controllers/OutputFormats'
@@ -41,6 +42,7 @@ export default function createSession(
   partialSession.system = new SystemController(partialSession as Session)
   partialSession.tests = new TestsController(partialSession as Session)
   partialSession.windows = new WindowsController(partialSession as Session)
+  partialSession.terminals = new TerminalsController(partialSession as Session)
   partialSession.api = Api(partialSession as Session)
 
   const session = partialSession as Session

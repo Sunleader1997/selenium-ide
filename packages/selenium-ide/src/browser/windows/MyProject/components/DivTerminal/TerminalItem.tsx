@@ -9,7 +9,7 @@ import {Terminal} from "@seleniumhq/side-model";
 function TerminalItem(props: {value: Terminal}){
   const { id, ip, name, ...other } = props.value;
   return (
-    <Card sx={{ minWidth: 275 }}>
+    <Card sx={{ minWidth: 275 }} id={id}>
       <CardContent>
         <Typography variant="h5" component="div">
           {ip}

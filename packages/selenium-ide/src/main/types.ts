@@ -18,6 +18,7 @@ import SuitesController from './session/controllers/Suites'
 import SystemController from './session/controllers/System'
 import TestsController from './session/controllers/Tests'
 import WindowsController from './session/controllers/Windows'
+import TerminalsController from "main/session/controllers/Terminals";
 import { MainApi } from './api'
 import { StorageSchema } from './store'
 
@@ -53,6 +54,7 @@ export interface Session {
   system: SystemController
   tests: TestsController
   windows: WindowsController
+  terminals: TerminalsController
 }
 
 export type SessionControllerKeys = keyof Omit<Session, 'app' | 'api'>

@@ -634,7 +634,7 @@ export default {
     value: ArgTypes.loopLimit,
   },
   shell: {
-    name: 'shell run in terminal',
+    name: 'shell run in terminals',
     description: `于设备上执行shell脚本`,
     target: ArgTypes.terminal,
     value: ArgTypes.shellScript,

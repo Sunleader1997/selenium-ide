@@ -1,34 +1,54 @@
 import {styled} from "@mui/material/styles";
-import Box, {BoxProps} from '@mui/material/Box';
+import Paper, {PaperProps} from '@mui/material/Paper';
 import React from "react";
 import Card from "@mui/material/Card";
+import Fade from "@mui/material/Fade";
 import CardContent from "@mui/material/CardContent";
-import Typography from "@mui/material/Typography";
 import CardActions from "@mui/material/CardActions";
+import IconButton, {IconButtonProps} from "@mui/material/IconButton";
 import Button from "@mui/material/Button";
-import {Terminal} from "@seleniumhq/side-model";
+import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {Fab} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
+interface ExpandMoreProps extends IconButtonProps {
+  expand: boolean;
+}
 interface AddFabProps extends React.HTMLAttributes<HTMLDivElement> {
   openFlag: boolean
   setOpenFlag: React.Dispatch<React.SetStateAction<boolean>>
-  createTerminal: (param: Terminal)=> void
+  createTerminal: ()=> void
 }
 
-const AddFabCore = styled(Box,{
+const ExpandMore = styled((props: ExpandMoreProps) => {
+  const { expand, ...other } = props;
+  return <IconButton {...other} />;
+})(({ theme, expand }) => ({
+  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
+  marginLeft: 'auto',
+  transition: theme.transitions.create('transform', {
+    duration: theme.transitions.duration.shortest,
+  }),
+}));
+
+const AddFabCore = styled(Paper,{
   shouldForwardProp: (prop) => prop !== 'openFab',
-})<BoxProps & {openFab: boolean}>(({ theme,openFab  })=>({
+})<PaperProps & {openFab: boolean}>(({ theme,openFab  })=>({
   position: 'fixed',
   bottom: 16,
   right: 16,
-  transition: theme.transitions.create(['height','width'], {
+  width: 56,
+  height: 56,
+  borderRadius: '50%',
+  transition: theme.transitions.create(['borderRadius','height','width'], {
     easing: theme.transitions.easing.sharp,
     duration: theme.transitions.duration.leavingScreen,
   }),
   ...(openFab && {
     width: 275,
-    transition: theme.transitions.create(['height','width'], {
+    height: 376,
+    borderRadius: 0,
+    transition: theme.transitions.create(['borderRadius', 'height','width'], {
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
@@ -43,24 +63,31 @@ const AddFab: React.FC<AddFabProps> = ({
 }) => {
   return (
     <AddFabCore id="addFabCore" openFab={openFlag}>
-      {
-        openFlag ? (
-          <Card sx={{minWidth: 275}} onDoubleClick={()=>setOpenFlag(false)}>
-            <CardContent>
-              <Typography variant="h5" component="div">
-                {children}
-              </Typography>
-            </CardContent>
-            <CardActions>
-              <Button size="small" onClick={() => createTerminal}>Link Test</Button>
-            </CardActions>
-          </Card>
-        ) : (
-          <Fab color="primary" aria-label="add" onClick={()=>setOpenFlag(true)}>
+      <Fade in={openFlag}>
+        <Card sx={{minWidth: 275, bottom: 0, right: 0, position: 'absolute'}}>
+          <CardContent>
+            {children}
+          </CardContent>
+          <CardActions disableSpacing>
+            <Button size="small" onClick={()=>createTerminal()}>Link Test</Button>
+            <ExpandMore
+              expand={!openFlag}
+              onClick={()=>setOpenFlag(!openFlag)}
+              aria-expanded={!openFlag}
+              aria-label="show more"
+            >
+              <ExpandMoreIcon />
+            </ExpandMore>
+          </CardActions>
+        </Card>
+      </Fade>
+      <Fade in={!openFlag}>
+        <IconButton sx={{ p:0 }}>
+          <Fab aria-label="add" onClick={()=>setOpenFlag(true)}>
             <AddIcon></AddIcon>
           </Fab>
-        )
-      }
+        </IconButton>
+      </Fade>
     </AddFabCore>
   )
 }

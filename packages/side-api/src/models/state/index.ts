@@ -77,6 +77,7 @@ export const defaultPlaybackState: PlaybackStateShape = {
 export interface StateShape {
   activeSuiteID: string
   activeTestID: string
+  activeTerminalID: string
   breakpoints: string[]
   commands: CommandTypes
   editor: EditorStateShape
@@ -92,6 +93,7 @@ export interface StateShape {
 export const state: StateShape = {
   activeSuiteID: loadingID,
   activeTestID: loadingID,
+  activeTerminalID: loadingID,
   breakpoints: [],
   commands: {},
   editor: defaultEditorState,

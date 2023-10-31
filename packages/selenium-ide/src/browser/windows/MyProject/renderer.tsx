@@ -16,17 +16,19 @@ const MyProject = () => {
   return (
     <AppWrapper>
       <DndProvider backend={HTML5Backend}>
-        <Box className="flex">
+        <Box sx={{ width: '100%' }}>
           <AppBar tab={tab} setTab={setTab}/>
-          <CustomTabPanel value={tab} index={0}>
-            测试计划
-          </CustomTabPanel>
-          <CustomTabPanel value={tab} index={1}>
-            Item Two
-          </CustomTabPanel>
-          <CustomTabPanel value={tab} index={2}>
-            <DivTerminal session={session}></DivTerminal>
-          </CustomTabPanel>
+          <Box className="fill no-select">
+            <CustomTabPanel value={tab} index={0}>
+              测试计划
+            </CustomTabPanel>
+            <CustomTabPanel value={tab} index={1}>
+              Item Two
+            </CustomTabPanel>
+            <CustomTabPanel value={tab} index={2}>
+              <DivTerminal session={session}></DivTerminal>
+            </CustomTabPanel>
+          </Box>
         </Box>
       </DndProvider>
     </AppWrapper>

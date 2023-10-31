@@ -14,7 +14,8 @@ interface DivTerminalProps{
 
 const {
   terminals: {
-    create: createTerminal
+    create: createTerminal,
+    linkTest: linkTest
   }
 } = window.sideAPI
 
@@ -31,22 +32,29 @@ const DivTerminal: React.FC<DivTerminalProps> = ({
   const [ user, setUser] = React.useState('root')
   const [ pwd, setPwd] = React.useState('123456')
   const [ system, setSystem] = React.useState('centos')
+  const [ linked, setLinked] = React.useState(false)
   const newTerminalParam: Terminal = {
+    id: '-1',
     name,
     ip,
     port,
     user,
     pwd,
-    system
+    system,
+    linked
   }
   return (
-    <Box sx={{ flexGrow: 1, minWidth: 870, minHeight: 393 }}>
-      <Masonry columns={4} spacing={2}>
+    <Box sx={{ minHeight: 393 }} className='fill'>
+      <Masonry columns={6} spacing={2}>
         {terminals.map(terminal => (
           <TerminalItem value={terminal}/>
         ))}
       </Masonry>
-      <AddFab setOpenFlag={setOpenAddTerminalDialogFlag} openFlag={openAddTerminalDialogFlag} createTerminal={()=>createTerminal(newTerminalParam)}>
+      <AddFab linkTest={()=>linkTest(newTerminalParam)}
+              setLinked={setLinked}
+              setOpenFlag={setOpenAddTerminalDialogFlag}
+              openFlag={openAddTerminalDialogFlag}
+              createTerminal={()=>createTerminal(newTerminalParam)}>
         <Typography variant="h5" component="div">
           <TextField value={newTerminalParam.name} label="name" variant="standard" onChange={(e)=>setName(e.target.value)}/>
           <TextField value={newTerminalParam.ip} label="ip" variant="standard" onChange={(e)=>setIp(e.target.value)}/>

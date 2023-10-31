@@ -5,31 +5,20 @@ import Card from "@mui/material/Card";
 import Fade from "@mui/material/Fade";
 import CardContent from "@mui/material/CardContent";
 import CardActions from "@mui/material/CardActions";
-import IconButton, {IconButtonProps} from "@mui/material/IconButton";
+import IconButton from "@mui/material/IconButton";
+import ExpandMore from "./ExpandMore"
 import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {Fab} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
 interface AddFabProps extends React.HTMLAttributes<HTMLDivElement> {
   openFlag: boolean
   setOpenFlag: React.Dispatch<React.SetStateAction<boolean>>
+  setLinked: React.Dispatch<React.SetStateAction<boolean>>
   createTerminal: ()=> void
+  linkTest: ()=> Promise<boolean>
 }
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-  marginLeft: 'auto',
-  transition: theme.transitions.create('transform', {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
 
 const AddFabCore = styled(Paper,{
   shouldForwardProp: (prop) => prop !== 'openFab',
@@ -59,7 +48,9 @@ const AddFab: React.FC<AddFabProps> = ({
   children,
   createTerminal,
   openFlag,
-  setOpenFlag
+  setOpenFlag,
+  linkTest,
+  setLinked
 }) => {
   return (
     <AddFabCore id="addFabCore" openFab={openFlag}>
@@ -69,7 +60,11 @@ const AddFab: React.FC<AddFabProps> = ({
             {children}
           </CardContent>
           <CardActions disableSpacing>
-            <Button size="small" onClick={()=>createTerminal()}>Link Test</Button>
+            <Button size="small" onClick={async () => {
+              const linked = await linkTest();
+              setLinked(linked)
+              if (linked) createTerminal()
+            }}>Create</Button>()
             <ExpandMore
               expand={!openFlag}
               onClick={()=>setOpenFlag(!openFlag)}

@@ -109,6 +109,8 @@
     "@seleniumhq/side-api": "^4.0.0-alpha.32",
     "@seleniumhq/side-model": "^4.0.0-alpha.4",
     "@seleniumhq/side-runtime": "^4.0.0-alpha.30",
+    "@types/node": "^16.11.64",
+    "@types/ssh2": "^1.11.15",
     "dnd-core": "^16.0.1",
     "electron-chromedriver": "^26.4.0",
     "electron-log": "^4.4.8",
@@ -120,8 +122,8 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
-    "react-morph": "^0.4.0",
     "side-code-export": "^4.0.0-alpha.11",
+    "ssh2": "^1.14.0",
     "v8-compile-cache": "^2.3.0"
   },
   "devDependencies": {

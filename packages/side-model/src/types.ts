@@ -59,13 +59,14 @@ export interface TestGroup {
 }
 // ssh 设备
 export interface Terminal {
-  id?: string
+  id: string
   name: string
   ip: string
   port: number
   user: string
   pwd: string
   system: string
+  linked: boolean
 }
 
 export interface ProjectShape {

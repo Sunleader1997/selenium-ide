@@ -141,7 +141,8 @@ export default class ProjectsController {
           port: 22,
           user: 'root',
           pwd: '123456',
-          system: 'centos'
+          system: 'centos',
+          linked: false
         }
       ]
     }

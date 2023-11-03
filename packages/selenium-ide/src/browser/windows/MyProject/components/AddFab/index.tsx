@@ -11,6 +11,7 @@ import Button from "@mui/material/Button";
 import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
 import {Fab} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
+import {useSnackbar} from "notistack";
 
 interface AddFabProps extends React.HTMLAttributes<HTMLDivElement> {
   openFlag: boolean
@@ -52,6 +53,7 @@ const AddFab: React.FC<AddFabProps> = ({
   linkTest,
   setLinked
 }) => {
+  const { enqueueSnackbar } = useSnackbar();
   return (
     <AddFabCore id="addFabCore" openFab={openFlag}>
       <Fade in={openFlag}>
@@ -60,11 +62,14 @@ const AddFab: React.FC<AddFabProps> = ({
             {children}
           </CardContent>
           <CardActions disableSpacing>
-            <Button size="small" onClick={async () => {
-              const linked = await linkTest();
-              setLinked(linked)
-              if (linked) createTerminal()
-            }}>Create</Button>()
+            <Button size="small"
+                    onClick={()=>{
+                      linkTest().then((linked)=>{
+                        enqueueSnackbar(linked? '连接成功':'连接失败', { variant: linked? 'success':'error' });
+                        setLinked(linked)
+                        if(linked) createTerminal()
+                      })
+                    }}>Create</Button>()
             <ExpandMore
               expand={!openFlag}
               onClick={()=>setOpenFlag(!openFlag)}

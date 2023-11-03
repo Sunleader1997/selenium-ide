@@ -1,4 +1,4 @@
-import { CommandShape } from '@seleniumhq/side-model'
+import {AlertType, CommandShape} from '@seleniumhq/side-model'
 import { CommandTypes } from '@seleniumhq/side-model/dist/Commands'
 import { badIndex } from '../../constants/badIndex'
 import { loadingID } from '../../constants/loadingID'
@@ -78,6 +78,7 @@ export interface StateShape {
   activeSuiteID: string
   activeTestID: string
   activeTerminalID: string
+  alertMsg: AlertType
   breakpoints: string[]
   commands: CommandTypes
   editor: EditorStateShape
@@ -94,6 +95,13 @@ export const state: StateShape = {
   activeSuiteID: loadingID,
   activeTestID: loadingID,
   activeTerminalID: loadingID,
+  alertMsg: {
+    id: loadingID,
+    vertical: 'top',
+    horizontal: 'right',
+    color: 'info',
+    msg: 'loading success'
+  },
   breakpoints: [],
   commands: {},
   editor: defaultEditorState,

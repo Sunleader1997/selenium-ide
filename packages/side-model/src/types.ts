@@ -57,6 +57,14 @@ export interface TestGroup {
   child: TestGroup[]
   tests: TestShape[]
 }
+export interface AlertType{
+  id: string
+  vertical: 'top' | 'bottom';
+  horizontal: 'left' | 'center' | 'right';
+  color: 'error' | 'info'
+  msg: string
+}
+
 // ssh 设备
 export interface Terminal {
   id: string

@@ -9,28 +9,31 @@ import subscribeToSession from "browser/helpers/subscribeToSession";
 import {TAB, TESTS_TAB} from "browser/windows/ProjectEditor/enums/tab";
 import CustomTabPanel from "browser/windows/MyProject/components/TabPanel";
 import DivTerminal from "browser/windows/MyProject/components/DivTerminal";
+import {SnackbarProvider} from "notistack";
 
 const MyProject = () => {
   const session = subscribeToSession()
   const [tab,setTab] = React.useState<TAB>(TESTS_TAB)
   return (
     <AppWrapper>
-      <DndProvider backend={HTML5Backend}>
-        <Box sx={{ width: '100%' }}>
-          <AppBar tab={tab} setTab={setTab}/>
-          <Box className="fill no-select">
-            <CustomTabPanel value={tab} index={0}>
-              测试计划
-            </CustomTabPanel>
-            <CustomTabPanel value={tab} index={1}>
-              Item Two
-            </CustomTabPanel>
-            <CustomTabPanel value={tab} index={2}>
-              <DivTerminal session={session}></DivTerminal>
-            </CustomTabPanel>
+      <SnackbarProvider maxSnack={3}>
+        <DndProvider backend={HTML5Backend}>
+          <Box sx={{ width: '100%' }}>
+            <AppBar tab={tab} setTab={setTab}/>
+            <Box className="fill no-select">
+              <CustomTabPanel value={tab} index={0}>
+                测试计划
+              </CustomTabPanel>
+              <CustomTabPanel value={tab} index={1}>
+                Item Two
+              </CustomTabPanel>
+              <CustomTabPanel value={tab} index={2}>
+                <DivTerminal session={session}></DivTerminal>
+              </CustomTabPanel>
+            </Box>
           </Box>
-        </Box>
-      </DndProvider>
+        </DndProvider>
+      </SnackbarProvider>
     </AppWrapper>
   )
 }

@@ -9,10 +9,7 @@ export const window: WindowConfig['window'] = () => {
     y: 20,
     width,
     height: 700,
-    title: 'Project',
-    webPreferences: {
-      devTools: true
-    }
+    title: 'Project'
   }
   return win
 }

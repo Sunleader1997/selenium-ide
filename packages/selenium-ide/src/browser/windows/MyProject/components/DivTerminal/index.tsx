@@ -11,7 +11,6 @@ import TextField from "@mui/material/TextField";
 interface DivTerminalProps{
   session: CoreSessionData,
 }
-
 const {
   terminals: {
     create: createTerminal,

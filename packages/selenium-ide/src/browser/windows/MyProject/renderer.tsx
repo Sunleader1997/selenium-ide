@@ -10,6 +10,7 @@ import {TAB, TESTS_TAB} from "browser/windows/ProjectEditor/enums/tab";
 import CustomTabPanel from "browser/windows/MyProject/components/TabPanel";
 import DivTerminal from "browser/windows/MyProject/components/DivTerminal";
 import {SnackbarProvider} from "notistack";
+import DivShell from "browser/windows/MyProject/components/DivShell";
 
 const MyProject = () => {
   const session = subscribeToSession()
@@ -25,7 +26,7 @@ const MyProject = () => {
                 测试计划
               </CustomTabPanel>
               <CustomTabPanel value={tab} index={1}>
-                Item Two
+                <DivShell session={session}></DivShell>
               </CustomTabPanel>
               <CustomTabPanel value={tab} index={2}>
                 <DivTerminal session={session}></DivTerminal>

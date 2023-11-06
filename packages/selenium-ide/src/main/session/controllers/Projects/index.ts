@@ -144,6 +144,13 @@ export default class ProjectsController {
           system: 'centos',
           linked: false
         }
+      ],
+      shells: [
+        {
+          id: randomUUID(),
+          name: 'demo',
+          content: '#!/bin/bash'
+        }
       ]
     }
     await this.onProjectLoaded(starterProject) // [lifecycle 2001] execute onProjectLoaded

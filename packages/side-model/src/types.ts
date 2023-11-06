@@ -76,6 +76,12 @@ export interface Terminal {
   system: string
   linked: boolean
 }
+// shell 脚本
+export interface Shell{
+  id: string
+  name: string
+  content: string
+}
 
 export interface ProjectShape {
   id: string
@@ -90,4 +96,5 @@ export interface ProjectShape {
   snapshot: SnapshotShape
   testGroup: TestGroup[]
   terminals: Terminal[]
+  shells: Shell[]
 }

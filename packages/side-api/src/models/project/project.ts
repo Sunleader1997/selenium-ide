@@ -19,5 +19,6 @@ export const project: ProjectShape = {
   tests: [test],
   snapshot: snapshot,
   testGroup: [],
-  terminals: []
+  terminals: [],
+  shells: []
 }

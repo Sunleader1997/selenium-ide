@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 
 interface ShellItemProps{
   shell: Shell
+  onClickContent: (event: any) => void
 }
 
 const ShellItemCore = styled(Paper,{})<PaperProps>(()=>({
@@ -17,6 +18,7 @@ const ShellItemCore = styled(Paper,{})<PaperProps>(()=>({
 }))
 const ShellItem: React.FC<ShellItemProps> = ({
   shell,
+  onClickContent
 })=>{
   return (
     <ShellItemCore id={shell.id}>
@@ -40,7 +42,7 @@ const ShellItem: React.FC<ShellItemProps> = ({
           </Stack>
         </Stack>
       </Toolbar>
-      <Box component="main" sx={{ p: 3 }}>
+      <Box component="main" sx={{ p: 3 }} onClick={onClickContent}>
         <Typography>
           {shell.content}
         </Typography>

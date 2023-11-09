@@ -16,10 +16,10 @@ const MyProject = () => {
   const session = subscribeToSession()
   const [tab,setTab] = React.useState<TAB>(TESTS_TAB)
   return (
-    <AppWrapper>
+    <AppWrapper id='AppWrapper1'>
       <SnackbarProvider maxSnack={3}>
         <DndProvider backend={HTML5Backend}>
-          <Box sx={{ width: '100%' }}>
+          <Box className="flex fill">
             <AppBar tab={tab} setTab={setTab}/>
             <Box className="fill no-select">
               <CustomTabPanel value={tab} index={0}>

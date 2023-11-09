@@ -11,16 +11,13 @@ import {
   WebpackPluginInstance,
 } from 'webpack'
 
-const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
-
 const isProduction = process.env.NODE_ENV === 'production'
 
 const commonPlugins: WebpackPluginInstance[] = [
   new ForkTsCheckerWebpackPlugin(),
   new SourceMapDevToolPlugin({
     filename: '[file].map',
-  }),
-  new MonacoWebpackPlugin ()
+  })
 ]
 if (isProduction) {
   commonPlugins.push(new MiniCssExtractPlugin())

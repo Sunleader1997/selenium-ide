@@ -111,6 +111,7 @@
     "@seleniumhq/side-model": "^4.0.0-alpha.4",
     "@seleniumhq/side-runtime": "^4.0.0-alpha.30",
     "@types/node": "^16.11.64",
+    "@types/react-swipeable-views": "^0.13.5",
     "codemirror": "5.65.15",
     "dnd-core": "^16.0.1",
     "electron-chromedriver": "^26.4.0",
@@ -127,6 +128,7 @@
     "react-dnd": "^16.0.1",
     "react-dnd-html5-backend": "^16.0.1",
     "react-dom": "^18.2.0",
+    "react-swipeable-views": "^0.14.0",
     "side-code-export": "^4.0.0-alpha.11",
     "v8-compile-cache": "^2.3.0"
   },

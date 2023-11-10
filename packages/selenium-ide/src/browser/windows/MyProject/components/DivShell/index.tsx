@@ -27,22 +27,45 @@ const DivShell: React.FC<DivShellProps> = ({
 })=>{
   const { shells } = session.project;
   const [ activeShell, setActiveShell] = React.useState<Shell>({content: "", id: "", name: ""});
-  const [ openedShells, setOpenedShells] = React.useState<Shell[]>([]);
-  const addOpenedShell = (shell: Shell) => {
-    if(!openedShells.some(obj => obj.id === shell.id)){
-      setOpenedShells([...openedShells, shell])
+  const [ openedShells, setOpenedShells] = React.useState<string[]>([]);
+
+  // 增加一个 tab 页
+  const addOpenedShell = (shellId: string) => {
+    if(!openedShells.some(obj => obj === shellId)){
+      setOpenedShells([...openedShells, shellId])
     }
   }
+  // 编辑shell， 更新 ActiveShell 的内容
   const onActiveContentChanged = (content: string)=>{
     setActiveShell({
       ...activeShell,
       content: content
     })
   }
+  // 列表选择， 将选择的 shell 作为 ActiveShell， 并增加 tab
   const handleListItemClick = (_event: any, shell: Shell) => {
     setActiveShell(shell)
-    addOpenedShell(shell)
+    addOpenedShell(shell.id)
   }
+  // tab 切换。根据选择的shellId，找出 shell 作为 ActiveShell
+  const handleTabsItemClick = (_event: any, shellId: string) => {
+    const selectShell = shells.find(item => item.id === shellId)
+    if( selectShell!==undefined ) {
+      setActiveShell(selectShell)
+    }
+  }
+  // 根据ID 获取shell的名字
+  const findShellNameById = (shellId: string) => {
+    const selectShell = shells.find(item => item.id === shellId)
+    return selectShell!==undefined? selectShell.name : '';
+  }
+  // 监听 ActiveShell ，当 ActiveShell 变更时，更新列表数据
+  React.useLayoutEffect(() => {
+    // 更新列表数据
+    console.log(activeShell.content)
+    const index = shells.findIndex(item => item.id === activeShell.id)
+    shells[index] = {...activeShell}
+  }, [activeShell]);
   return (
     <Box id="divShell" sx={{ display: 'flex', height: '100%' }}>
       <Main id="shellItemsMain">
@@ -62,18 +85,18 @@ const DivShell: React.FC<DivShellProps> = ({
       </Main>
       <Stack spacing={0} sx={{ flex: 1, minWidth: 0, minHeight: 0}}>
         <Tabs
-          value={shells}
-          onChange={handleListItemClick}
+          value={activeShell.id}
+          onChange={handleTabsItemClick}
           variant="scrollable"
           scrollButtons
           allowScrollButtonsMobile
           aria-label="scrollable force tabs example"
           sx={{ minHeight: '20px', width: '100%' }}
         >
-          {shells.map(shell => (
+          {openedShells.map(shellId => (
             <Tab
-              value={shell.id}
-              label={shell.name}
+              value={shellId}
+              label={findShellNameById(shellId)}
               sx={{
                 background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
                 color: 'white',

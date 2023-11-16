@@ -1,13 +1,14 @@
-import {CoreSessionData} from "@seleniumhq/side-api";
+import {CoreSessionData, hasID} from "@seleniumhq/side-api";
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
 import ListItemButton from '@mui/material/ListItemButton';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
-import InboxIcon from '@mui/icons-material/Inbox';
+import TerminalIcon from '@mui/icons-material/Terminal';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Stack from '@mui/material/Stack';
+import Divider from '@mui/material/Divider';
 
 
 import * as React from "react";
@@ -21,6 +22,12 @@ interface DivShellProps{
 const Main = styled('main', { })(()=>({
   minWidth: 250
 }))
+
+const {
+  shells: {
+    update: updateShell,
+  }
+} = window.sideAPI
 
 const DivShell: React.FC<DivShellProps> = ({
   session,
@@ -63,8 +70,9 @@ const DivShell: React.FC<DivShellProps> = ({
   React.useLayoutEffect(() => {
     // 更新列表数据
     console.log(activeShell.content)
-    const index = shells.findIndex(item => item.id === activeShell.id)
+    const index = shells.findIndex(hasID(activeShell.id))
     shells[index] = {...activeShell}
+    updateShell(activeShell.id,activeShell)
   }, [activeShell]);
   return (
     <Box id="divShell" sx={{ display: 'flex', height: '100%' }}>
@@ -76,13 +84,14 @@ const DivShell: React.FC<DivShellProps> = ({
               onClick={(event) => handleListItemClick(event, shell)}
             >
               <ListItemIcon>
-                <InboxIcon />
+                <TerminalIcon />
               </ListItemIcon>
-              <ListItemText primary="Inbox" />
+              <ListItemText primary={shell.name} />
             </ListItemButton>
           ))}
         </List>
       </Main>
+      <Divider orientation="vertical" variant="middle" flexItem />
       <Stack spacing={0} sx={{ flex: 1, minWidth: 0, minHeight: 0}}>
         <Tabs
           value={activeShell.id}

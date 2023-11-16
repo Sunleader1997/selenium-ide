@@ -11,6 +11,7 @@ import { type Shape as System } from '../commands/system'
 import { type Shape as Tests } from '../commands/tests'
 import { type Shape as Windows } from '../commands/windows'
 import { type Shape as Terminals } from '../commands/terminals'
+import { type Shape as Shells } from '../commands/shells'
 /**
  * The full API usable by Selenium IDE
  */
@@ -28,6 +29,7 @@ export type Api = {
   tests: Tests
   windows: Windows
   terminals: Terminals
+  shells: Shells
 }
 
 export type ApiOverrides = {

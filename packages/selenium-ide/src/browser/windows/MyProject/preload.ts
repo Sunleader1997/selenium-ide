@@ -9,8 +9,12 @@ document.addEventListener('DOMContentLoaded', () => {
   console.log(ipcRenderer)
   window.sideAPI = {
     terminals: api.terminals,
+    shells: api.shells,
     // @ts-expect-error
-    mutators: { terminals: apiMutators.terminals },
+    mutators: {
+      terminals: apiMutators.terminals,
+      shells: apiMutators.shells
+    },
   }
   setTimeout(async () => {
     console.log('Initializing the project')

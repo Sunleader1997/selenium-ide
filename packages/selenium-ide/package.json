@@ -100,6 +100,7 @@
     "@mui/icons-material": "^5.14.1",
     "@mui/lab": "5.0.0-alpha.150",
     "@mui/material": "^5.14.1",
+    "@mui/x-tree-view": "^6.17.0",
     "@seleniumhq/code-export-csharp-nunit": "^4.0.0-alpha.1",
     "@seleniumhq/code-export-csharp-xunit": "^4.0.0-alpha.1",
     "@seleniumhq/code-export-java-junit": "^4.0.0-alpha.1",

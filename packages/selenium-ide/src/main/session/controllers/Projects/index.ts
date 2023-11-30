@@ -112,27 +112,27 @@ export default class ProjectsController {
           extraGlobals: [],
         },
       },
-      testGroup: [
-        {
-          id: randomUUID(),
-          name: 'root',
-          child: [],
-          tests: [
-            {
-              id: randomUUID(),
-              name: 'New Test',
-              commands: [
-                {
-                  id: randomUUID(),
-                  command: 'open',
-                  target: '/',
-                  value: '',
-                },
-              ],
-            },
-          ]
-        }
-      ],
+      // testGroup: [
+      //   {
+      //     id: randomUUID(),
+      //     name: 'root',
+      //     child: [],
+      //     tests: [
+      //       {
+      //         id: randomUUID(),
+      //         name: 'New Test',
+      //         commands: [
+      //           {
+      //             id: randomUUID(),
+      //             command: 'open',
+      //             target: '/',
+      //             value: '',
+      //           },
+      //         ],
+      //       },
+      //     ]
+      //   }
+      // ],
       terminals: [
         {
           id: randomUUID(),

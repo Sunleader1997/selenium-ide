@@ -80,7 +80,7 @@ export function migrateProject(files: FileObj[]) {
     url: '',
     urls: [],
     version: '3.0',
-    testGroup: [],
+    //testGroup: [],
     terminals: [],
     shells: []
   }

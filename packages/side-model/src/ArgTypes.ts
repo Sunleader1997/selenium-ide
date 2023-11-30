@@ -16,6 +16,14 @@
 // under the License.
 
 const argTypes = {
+  terminal: {
+    name: 'terminal',
+    description: 'terminals which shell script running at',
+  },
+  shellScript: {
+    name: 'shell script',
+    description: 'shell script that running in terminals',
+  },
   alertText: {
     name: 'alert text',
     description: 'text to check',
@@ -163,14 +171,6 @@ const argTypes = {
   xpath: {
     name: 'xpath',
     description: 'The xpath expression to evaluate',
-  },
-  terminal: {
-    name: 'terminal',
-    description: 'terminals which shell script running at',
-  },
-  shellScript: {
-    name: 'shell script',
-    description: 'shell script that running in terminals',
   },
 } as const
 

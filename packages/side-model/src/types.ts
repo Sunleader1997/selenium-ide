@@ -44,13 +44,12 @@ export interface SuiteShape {
   timeout: number
   tests: string[]
 }
-
 export interface TestShape {
   id: string
   name: string
+  children?: TestShape[]
   commands: CommandShape[]
 }
-// 测试组,给测试TestShape进行功能分类
 export interface TestGroup {
   id: string
   name: string
@@ -94,7 +93,7 @@ export interface ProjectShape {
   tests: TestShape[]
   suites: SuiteShape[]
   snapshot: SnapshotShape
-  testGroup: TestGroup[]
+  //testGroup: TestGroup[]
   terminals: Terminal[]
   shells: Shell[]
 }
